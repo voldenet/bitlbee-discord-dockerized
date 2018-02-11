@@ -1,0 +1,13 @@
+[Unit]
+Description=discord_bitlbee
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/docker run -p 127.0.0.1:16667:6667 --name discord_bitlbee -v %h/discord/var/lib/bitlbee:/var/lib/bitlbee discord
+ExecStopPost=/usr/bin/docker rm -f discord_bitlbee
+Restart=always
+RestartSec=10s
+NotifyAccess=all
+
+[Install]
+WantedBy=default.target
